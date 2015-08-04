@@ -1,0 +1,481 @@
+<template name="main">
+<!-- Called from labels.html; main -->
+<p><strong><em>Click on the title of the options to see just a subset of the 
+information.<br />Edit All shows all and allows editing by clicking on the 
+title of the field (in bold).
+</em></strong></p>
+
+<p><strong>Choose a material:</strong></p>
+{{> chooseOne}}
+  <p>&nbsp;</p>
+
+{{#if addNew}}
+  {{> newForm}}
+{{else}}
+  {{> pages}}
+  {{#if infoIsProduct}}
+    {{> displayProduct}}
+  {{/if}}
+  {{#if infoIsHealth}}
+    {{> displayHealth}}
+  {{/if}}
+  {{#if infoIsFirstAid}}
+    {{> displayFirstAid}}
+  {{/if}}
+  {{#if infoIsPPE}}
+    {{> displayPPE}}
+  {{/if}}
+  {{#if infoIsAg}}
+    {{> displayAgEnviron}}    
+  {{/if}}  
+  {{#if infoIsControls}}
+    {{> displayControls}}    
+  {{/if}}  
+  {{#if editInfo}}
+    {{> single}}
+  {{/if}}
+{{/if}}
+</template>
+
+<template name="addlMaterial">
+<!-- Creates button for adding materials to list -->
+  <input type="button" value="+"  />
+</template>
+
+<template name="checkPest">
+<!-- Creates checkbox for pest with name n; JS function pcheck returns
+     checked or empty -->
+<input type="checkbox" class="inp" name={{n}} id={{n}} 
+   {{pcheck}}  />{{n}} &nbsp;
+</template>
+
+<template name="chooseOne">
+<!-- sets up select element to use choose material or new material -->
+  <select id="selMat">
+  {{#each materialChoices}}
+    {{> matChoice}}
+  {{/each}}
+  <option value="New">Add new material</option>
+  </select>
+</template>
+
+<template name="displayAgEnviron">
+<h3>Agricultural and Environmental Concerns for {{product}}</h3>
+  {{> displayArea what="Agricultural Use Requirements" 
+      val=chosenOne.agUseReq }}
+  {{> displayArea what="Environmental Hazards" 
+      val=chosenOne.envHaz }}
+</template>
+
+<template name="displayArea">
+<!-- displays text with returns substituted for ;; 
+    (insertBreaksP function -->
+<p><strong>{{what}}</strong></p>
+{{{insertBreaksP}}}
+</template>
+
+<template name="displayArsenic">
+<!-- displays values for arsenic % and amount elemental -->
+<p><strong>Arsenic: </strong>{{this.p}} %; {{this.e}} 
+     elemental</p>
+</template>
+
+<template name="displayControls">
+<h3>Engineering and Other Controls for {{product}}</h3>
+  {{> displayArea what="Physical or Chemical Hazards" 
+      val=chosenOne.physHaz}}
+  {{> displayArea what="Engineering controls" 
+      val=chosenOne.engControls }}
+</template>
+
+<template name="displayFirstAid">
+<h3>First Aid Information for {{product}}</h3>
+  {{> displayArea what="First Aid, if in eyes" val=chosenOne.firstAid }}
+  {{> displayArea what="First Aid, if swallowed" val=chosenOne.swallowed }}
+  {{> displayArea what="First Aid, if on skin or clothing" 
+      val=chosenOne.skin  }}
+  {{> displayArea what="First Aid, if inhaled" 
+      val=chosenOne.inhaled}}
+   {{> displayArea what="First Aid, Note to Physician" 
+      val=chosenOne.physician }}
+   {{> displayArea what="First Aid, When calling poison center" 
+      val=chosenOne.centerCall }}
+</template>
+
+<template name="displayHealth">
+<h3>Health Information for {{product}}</h3>
+  {{> displayItem what="Signal Word" val=chosenOne.signal }}
+  {{> displayArea what="Hazard Statement" 
+      val=chosenOne.hazardStmt }}
+  {{> displayArea what="Precautionary Statement" 
+      val=chosenOne.precaution }}
+  {{> displayArea what="User Safety Recommendations" 
+      val=chosenOne.safetyRecs }}
+</template>
+
+<template name="displayIngredient">
+<!-- displays list of either active or inert ingredients (this.what) 
+    with names and percents -->
+<p><strong>{{this.what}}</strong></p>
+  {{#each this.val}}
+    <p>{{name}} ({{percent}}%)</p>
+  {{/each}}
+</template>
+
+<template name="displayItem">
+<!-- displays a single value -->
+<p><strong>{{what}}</strong> {{val}}</p>
+</template>
+
+<template name="displayList">
+<!-- displays a list of pests -->
+  <p><strong>Pests:</strong>
+    {{assembleList}}
+  </p>
+</template>
+
+<template name="displayPPE">
+<h3>Personal Protective Equipment (PPE) for {{product}}</h3>
+  {{> displayArea what="Personal Protective Equipment" 
+      val=chosenOne.ppe }}
+</template>
+
+<template name="displayProduct">
+<h3>Product Information for {{product}}</h3>
+  {{> displayItem what="Product" val=chosenOneX.product
+      name="product" }}
+  {{> displayList what="Pests" val=chosenOneX.pests
+      name="pests" }}
+  {{> displayItem what="Producer" val=chosenOneX.producer
+      name="producer" }}
+  {{> displayItem what="EPA number" val=chosenOneX.epa
+      name="epa" }}
+  {{> displayItem what="Production Establishment number" 
+      val=chosenOneX.establishment }}
+  {{> displayItem what="Net measure" val=chosenOneX.measure }}
+  {{> displayArsenic p=chosenOneX.arsenic.percent
+      e=chosenOneX.arsenic.elemental }}
+  {{> displayIngredient what="Active Ingredients:" val=chosenOneX.active
+     }}
+  {{> displayIngredient what="Inert Ingredients:" val=chosenOneX.inert
+     }}
+  {{> displayItem what="Producer address:" val=chosenOneX.address }}
+  {{> displayItem what="Emergency contact phone:" val=chosenOneX.phone }}
+  {{> displayItem what="Restricted Entry Interval (REI):" 
+      val=chosenOneX.rei }}
+  {{> displayRadio what="Restricted Use Material:" 
+      val=chosenOneX.restricted }}
+  {{> displayItem what="Signal Word" val=chosenOneX.signal }}
+  {{> displayItem what="Signal Word (spanish)" val=chosenOneX.signalEsp }}
+  {{> displayRadio what="Keep out of reach of children" 
+      val=chosenOneX.children }}
+</template>
+
+<template name="displayRadio">
+<!-- displays a single value with title what and value val -->
+<p><strong>{{this.what}}</strong> {{this.val}}</p>
+</template>
+
+<template name="editMat">
+<!-- creates input tags for editing materials, name and percent;
+    creates - button for deleting material -->
+    <p>Material: <input type="text" name="name" class="material"
+        value={{name}} />
+      ( <input type="text" name="percent" size="8" class="material"
+          value={{percent}} />%)
+      <input type="button" value="-" /></p>
+</template>
+
+<template name="entry">
+  <p>{{product}}</p>
+</template>
+
+<!-- for form... templates visibility of elements is controlled
+    by the value of the class of the enclosing div; see the
+    labels.css file; clicking on span with class current
+    will open editor for item -->
+
+<template name="formIngredient">
+<!-- creates tags for entering ingredients; with add button -->
+<div id={{this.activeInert}} class="editOff"><p><strong class="editable">{{this.what}}</strong>
+    <input type="button"
+        class="zupdate" value="Update" />
+  <input type="button" class="ycancel" value="Close" /></p>
+  {{#each this.val}}
+  <p class="ingredient">
+  <span class="current" id="name">{{name}}</span>
+  <input type="text" class="inp" name="name" value={{name}} /> (
+  <span class="current" id="percent">{{percent}}</span>
+  <input type="text" class="inp" name="percent" value={{percent}} />
+     %)
+  <input type="button" class="delete" value="-" />
+  </p>
+  {{/each}}
+ <p class="addlIngredient">
+  <input type="text" class="inp" name="name" value={{name}} /> (
+  <input type="text" class="inp" name="percent" value={{percent}} />
+     %)
+  <input type="button" class="addone" value="+" /></p>
+  </div>
+</template>
+
+<template name="formItem">
+<div class="editOff"><p><strong class="editable">{{this.what}}</strong>
+  <span class="current">{{this.val}}</span></p>
+  <textarea class="inp" name={{this.name}}
+      cols="60">{{this.val}}</textarea>
+  <p class="buttons"><input type="button" class="xupdate" value="Update" />
+  <input type="button" class="cancel" value="Close" /></p>
+  </div>
+</template>
+
+<template name="formItemArsenic">
+<div class="editOff"><p><strong class="editable">Arsenic: </strong>
+  <span class="current" id="percent">{{this.p}}</span>
+  <input type="text" class="inp" name="percent" value={{this.p}} /> %
+  <span class="current" id="elemental">{{this.e}}</span>
+  <input type="text" class="inp" name="elemental" value={{this.e}} />
+     elemental</p>
+  <p class="buttons"><input type="button" class="yupdate" value="Update" />
+  <input type="button" class="ycancel" value="Close" /></p>
+  </div>
+</template>
+
+<template name="formRadio">
+<div class="editOff"><p><strong class="editable">{{this.what}} {{this.val}}</strong>
+  <input type="button" class="toggle" value="Toggle" />
+  <input type="button" class="rCancel" value="Close" />
+</p>
+</div>
+</template>
+
+<template name="formTextarea">
+<div class="editOff"><p><strong class="editable">{{this.what}}</strong></p>
+  <span class="current">{{{insertBreaksP}}}</span>
+  <textarea class="inp" name={{this.name}}
+      cols="60" rows={{this.rows}} >{{insertBreaks}}</textarea>
+  <p class="buttons"><input type="button" class="xupdate" value="Update" />
+  <input type="button" class="cancel" value="Close" /></p>
+  </div>
+</template>
+
+<template name="ingredient">
+  <span>{{name}} ({{percent}}%)</span>
+</template>
+
+<template name="matChoice">
+<!-- creates option tag for use with select to choose a material -->
+  <option value={{_id}}> {{product}}
+  </option>
+</template>
+
+<template name="newForm">
+<!-- creates form with tags for entering initial data 
+    for new materials -->
+  <h3>Insert new material</h3>
+  <form class="newMaterial">
+    <p>Product <input type="text" name="product" size="32"
+        class="sole" /></p>
+    <p>EPA number <input type="text" name="epa"  size="12"
+        class="sole" /></p>
+    <div id="ingredient" class="ingredient">
+    <p><strong>Active Ingredients</strong></p>
+    </div>
+    <p>{{> addlMaterial x="ingredient" }}</p>
+    <input type="hidden" name="trans" value="next" class="trans" />
+    <div id="inert" class="inert">
+    <p><strong>Inert Ingredients</strong></p>
+    </div>
+    <p>{{> addlMaterial x="inert" }}</p>
+    <p>Arsenic: <input type="text" name="percent" size="8"
+        class="arsenic" value="0" /> %,
+      <input type="text" name="elemental" size="8"
+        class="arsenic" value="0" /> elemental</p>
+    <p>Producer <input type="text" name="producer" size="40"
+        class="sole" /></p>
+    <p>Address <input type="text" name="address" size="48"
+        class="sole"/></p>
+    <p>Emergency phone <input type="text" name="phone" size="16"
+        class="sole"/></p>
+    <p>Restricted Use Material
+      <input type="radio" name="restricted" value="no"
+        checked="checked" class="sole" /> no
+      <input type="radio" name="restricted" value="yes"
+        class="sole" /> yes</p>
+     <p><input type="submit" name="gofor" value="Insert"/></p>
+  </form>
+</template>
+
+<template name="pageButton">
+<!-- creates clickable text to choose what information is displayed -->
+<span class={{this.openClass}} id={{this.ident}} >{{this.titl}}</span>
+</template>
+
+<template name="pages">
+<!-- clickable text to specify what set of information is displayed -->
+<div id="pageMenu">
+  {{> pageButton titl="Product Info" openClass="itemChoosen"
+    ident="productInfo" }} |
+  {{> pageButton titl="Health Info" openClass="itemAvailable"
+    ident="healthInfo" }} |
+  {{> pageButton titl="First Aid" openClass="itemAvailable"
+    ident="firstAid" }} |
+  {{> pageButton titl="PPE" openClass="itemAvailable"
+    ident="ppe" }} |
+  {{> pageButton titl="Agricultural and Environmental" 
+    openClass="itemAvailable"
+    ident="agEnviron" }} |
+  {{> pageButton titl="Engineering controls" 
+    openClass="itemAvailable"
+    ident="controls" }} |
+  {{> pageButton titl="Other" openClass="itemAvailable"
+    ident="otherInfo" }} |
+  {{> pageButton titl="Edit All" openClass="itemAvailable"
+    ident="editAll" }}
+</div>
+</template>
+
+<template name="pestList">
+<!-- creates checklist of pests -->
+  <div class="editOff" id="pestList">
+  <p><strong class="editable">Pests:</strong></p>
+  <p class="checklist">
+  {{> checkPest n="codling moth" ar=val }} 
+  {{> checkPest n="leafrollers" ar=val}}
+  {{> checkPest n="spider mites"  ar=val}}
+  {{> checkPest n="pear rust mite"  ar=val}}
+  {{> checkPest n="woolly apple aphid" ar=val }}
+  {{> checkPest n="pear psylla"  ar=val}}
+  {{> checkPest n="fireblight" ar=val }}
+  </p>
+  <p></p>
+  <p><span>{{valScript}}</span></p>
+  <p class="buttons"><input type="button" class="pupdate" value="Update" />
+  <input type="button" class="pcancel" value="Close" /></p>
+  </div>
+</template>
+
+<template name="single">
+<!-- displays all values in database entry; clicking on title will
+  bring up editor for item -->
+  {{> formItem what="Product" val=chosenOne.product
+      name="product" }}
+  {{> pestList what="Pests" val=chosenOne.pests
+      name="pests" }}
+  {{> formItem what="Producer" val=chosenOne.producer
+      name="producer" }}
+  {{> formItem what="EPA number" val=chosenOne.epa
+      name="epa" }}
+  {{> formItem what="Production Establishment number" 
+      val=chosenOne.establishment name="establishment" }}
+  {{> formItem what="Net measure" val=chosenOne.measure
+      name="measure" }}
+  {{> formItemArsenic p=chosenOne.arsenic.percent
+      e=chosenOne.arsenic.elemental }}
+  {{> formIngredient what="Active Ingredients:" val=chosenOne.active
+     activeInert="active"}}
+  {{> formIngredient what="Inert Ingredients:" val=chosenOne.inert
+     activeInert="inert"}}
+  {{> formItem what="Producer address:" val=chosenOne.address
+      name="address" }}
+  {{> formItem what="Emergency contact phone:" val=chosenOne.phone
+      name="phone" }}
+  {{> formItem what="Restricted Entry Interval (REI):" val=chosenOne.rei
+      name="rei" }}
+  {{> formRadio what="Restricted Use Material:" val=chosenOne.restricted
+      name="restricted" values="yes,no" }}
+  {{> formItem what="Signal Word" val=chosenOne.signal
+      name="signal" }}
+  {{> formItem what="Signal Word (spanish)" val=chosenOne.signalEsp
+      name="signalEsp" }}
+  {{> formItem what="Precautionary Statement" val=chosenOne.precaution
+      name="precaution" }}
+  {{> formItem what="Precautionary Statement (spanish)" 
+      val=chosenOne.precautionEsp
+      name="precautionEsp" }}
+  {{> formRadio what="Keep out of reach of children" 
+      val=chosenOne.children
+      name="children" values="yes,no" }}
+  {{> formTextarea what="First Aid, if in eyes" val=chosenOne.firstAid
+      name="firstAid" rows=6 }}
+  {{> formTextarea what="First Aid,  if in eyes (spanish)" 
+      val=chosenOne.firstAidEsp
+      name="firstAidEsp" rows=6 }}
+  {{> formTextarea what="First Aid, if swallowed" val=chosenOne.swallowed
+      name="swallowed" rows=6 }}
+  {{> formTextarea what="First Aid,  if in swallowed (spanish)" 
+      val=chosenOne.swallowedEsp
+      name="swallowedEsp" rows=6 }}
+  {{> formTextarea what="First Aid, if on skin or clothing" 
+      val=chosenOne.skin
+      name="skin" rows=6 }}
+  {{> formTextarea what="First Aid,  if on skin or clothing (spanish)" 
+      val=chosenOne.skinEsp
+      name="skinEsp" rows=6 }}
+  {{> formTextarea what="First Aid, if inhaled" 
+      val=chosenOne.inhaled
+      name="inhaled" rows=6 }}
+  {{> formTextarea what="First Aid,  if inhaled (spanish)" 
+      val=chosenOne.inhaledEsp
+      name="inhaledEsp" rows=6 }}
+  {{> formTextarea what="First Aid, Note to Physician" 
+      val=chosenOne.physician
+      name="physician" rows=6 }}
+  {{> formTextarea what="First Aid, Note to Physician (spanish)" 
+      val=chosenOne.physicianEsp
+      name="physicianEsp" rows=6 }}
+  {{> formTextarea what="First Aid, When calling poison center" 
+      val=chosenOne.centerCall
+      name="centerCall" rows=6 }}
+  {{> formTextarea what="First Aid, When calling poison center (spanish)" 
+      val=chosenOne.centerCallEsp
+      name="centerCallEsp" rows=6 }}
+  {{> formTextarea what="Hazard Statement" 
+      val=chosenOne.hazardStmt
+      name="hazardStmt" rows=6 }}
+  {{> formTextarea what="Hazard Statement (spanish)" 
+      val=chosenOne.hazardStmtEsp
+      name="hazardStmtEsp" rows=6 }}
+  {{> formTextarea what="Personal Protective Equipment" 
+      val=chosenOne.ppe
+      name="ppe" rows=6 }}
+  {{> formTextarea what="Personal Protective Equipment (spanish)" 
+      val=chosenOne.ppeEsp
+      name="ppeEsp" rows=6 }}
+  {{> formTextarea what="User Safety Recommendations" 
+      val=chosenOne.safetyRecs
+      name="safetyRecs" rows=6 }}
+  {{> formTextarea what="User Safety Recommendations (spanish)" 
+      val=chosenOne.safetyRecsEsp
+      name="safetyRecsEsp" rows=6 }}
+  {{> formTextarea what="Agricultural Use Requirements" 
+      val=chosenOne.agUseReq
+      name="agUseReq" rows=6 }}
+  {{> formTextarea what="Agricultural Use Requirements (spanish)" 
+      val=chosenOne.agUseReqEsp
+      name="agUseReqEsp" rows=6 }}
+  {{> formTextarea what="Environmental Hazards" 
+      val=chosenOne.envHaz
+      name="envHaz" rows=6 }}
+  {{> formTextarea what="Environmental Hazards (spanish)" 
+      val=chosenOne.envHazEsp
+      name="envHazEsp" rows=6 }}
+  {{> formTextarea what="Physical or Chemical Hazards" 
+      val=chosenOne.physHaz
+      name="physHaz" rows=6 }}
+  {{> formTextarea what="Physical or Chemical  Hazards (spanish)" 
+      val=chosenOne.physHazEsp
+      name="physHazEsp" rows=6 }}
+  {{> formTextarea what="Engineering controls" 
+      val=chosenOne.engControls
+      name="engControls" rows=6 }}
+  {{> formTextarea what="Engineering controls (spanish)" 
+      val=chosenOne.engControlsEsp
+      name="engControlsEsp" rows=6 }}
+</template>
+
+<template name="yourMsg">
+    <p>Material: <input type="text" name="name" class="material" />
+      ( <input type="text" name="percent" size="8" class="material"
+          />%)</p>
+</template>

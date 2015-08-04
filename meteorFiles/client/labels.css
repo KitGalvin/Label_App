@@ -1,0 +1,56 @@
+/* CSS declarations go here */
+.editOff textarea {
+  display: none;
+}
+.editOff input {
+  display: none;
+}
+
+.editOff span {
+  display: inline;
+}
+
+.editOff .addlIngredient {
+  display: none;
+}
+
+.editOff .checklist {
+  display: none;
+}
+
+.editOn textarea {
+  display: inline;
+}
+.editOn input {
+  display: inline;
+}
+
+.editOn span {
+  display: none;
+}
+
+.editOn .addlIngredient {
+  display: block;
+}
+
+.editOn .checklist {
+  display: block;
+}
+
+#pageMenu {
+  color: #090;
+}
+
+#languageMenu {
+  color: #009;
+}
+
+.itemChoosen {
+  font-weight: bold;
+}
+
+pre {
+  font-family: serif;
+}
+
+
