@@ -30,6 +30,10 @@ title of the field (in bold).
   {{/if}}  
   {{#if infoIsControls}}
     {{> displayControls}}    
+  {{/if}}
+  <!-- if clause added 9/11 -->  
+  {{#if infoIsOther}}
+    {{> displayOther}}    
   {{/if}}  
   {{#if editInfo}}
     {{> single}}
@@ -86,6 +90,9 @@ title of the field (in bold).
       val=chosenOne.physHaz}}
   {{> displayArea what="Engineering controls" 
       val=chosenOne.engControls }}
+  <!-- added 9/11 -->
+  {{> displayArea what="Storage and Disposal" 
+      val=chosenOne.storageDisposal }}
 </template>
 
 <template name="displayFirstAid">
@@ -134,6 +141,13 @@ title of the field (in bold).
   </p>
 </template>
 
+<!-- template added 9/11 -->
+<template name="displayOther">
+<h3>Other entries for {{product}}</h3>
+  {{> displayArea what="Notes for this entry" 
+      val=chosenOne.entryNotes }}
+</template>
+
 <template name="displayPPE">
 <h3>Personal Protective Equipment (PPE) for {{product}}</h3>
   {{> displayArea what="Personal Protective Equipment" 
@@ -144,6 +158,9 @@ title of the field (in bold).
 <h3>Product Information for {{product}}</h3>
   {{> displayItem what="Product" val=chosenOneX.product
       name="product" }}
+  <!-- added 9/11 -->
+  {{> displayItem what="Formulation" val=chosenOneX.formulation
+      name="formulation" }}
   {{> displayList what="Pests" val=chosenOneX.pests
       name="pests" }}
   {{> displayItem what="Producer" val=chosenOneX.producer
@@ -163,6 +180,9 @@ title of the field (in bold).
   {{> displayItem what="Emergency contact phone:" val=chosenOneX.phone }}
   {{> displayItem what="Restricted Entry Interval (REI):" 
       val=chosenOneX.rei }}
+  <!-- added 9/11 -->
+  {{> displayItem what="Pre-harvest Interval (PHI):" 
+      val=chosenOneX.phi }}
   {{> displayRadio what="Restricted Use Material:" 
       val=chosenOneX.restricted }}
   {{> displayItem what="Signal Word" val=chosenOneX.signal }}
@@ -360,6 +380,12 @@ title of the field (in bold).
   bring up editor for item -->
   {{> formItem what="Product" val=chosenOne.product
       name="product" }}
+  <!-- Field added 9/11 -->
+  {{> formItem what="Formulation" val=chosenOne.formulation
+      name="formulation" }}
+  {{> formItem what="Formulation (in Spanish)" 
+      val=chosenOne.formulationEsp
+      name="formulation" }}
   {{> pestList what="Pests" val=chosenOne.pests
       name="pests" }}
   {{> formItem what="Producer" val=chosenOne.producer
@@ -382,6 +408,9 @@ title of the field (in bold).
       name="phone" }}
   {{> formItem what="Restricted Entry Interval (REI):" val=chosenOne.rei
       name="rei" }}
+  <!-- Field added 9/11 -->
+  {{> formItem what="Pre-harvest Interval (PHI):" val=chosenOne.phi
+      name="phi" }}
   {{> formRadio what="Restricted Use Material:" val=chosenOne.restricted
       name="restricted" values="yes,no" }}
   {{> formItem what="Signal Word" val=chosenOne.signal
@@ -472,6 +501,17 @@ title of the field (in bold).
   {{> formTextarea what="Engineering controls (spanish)" 
       val=chosenOne.engControlsEsp
       name="engControlsEsp" rows=6 }}
+  <!-- Field added 9/11 -->
+  {{> formTextarea what="Storage and disposal" 
+      val=chosenOne.storageDisposal
+      name="storageDisposal" rows=6 }}
+  {{> formTextarea what="Storage and disposal (spanish)" 
+      val=chosenOne.storageDisposalEsp
+      name="storageDisposalEsp" rows=6 }}
+  <!-- Field added 9/11 -->
+  {{> formTextarea what="Notes for this entry" 
+      val=chosenOne.entryNotes
+      name="entryNotes" rows=6 }}
 </template>
 
 <template name="yourMsg">

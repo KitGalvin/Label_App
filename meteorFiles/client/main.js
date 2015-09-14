@@ -41,6 +41,10 @@ Template.main.helpers({
   infoIsControls: function() {
     return (Session.get("selectedScreen")==="controls");
   },
+  // function added 9/11
+  infoIsOther: function() {
+    return (Session.get("selectedScreen")==="otherInfo");
+  },
   editInfo: function() {
     return (Session.get("selectedScreen")==="editAll");
   },
@@ -157,7 +161,8 @@ Template.checkPest.helpers({
 Template.chooseOne.helpers({
 //returns all materials in database
   materialChoices: function() {
-    return Labels.find().fetch();
+    // sort option added 9/11
+    return Labels.find({},{sort : ["product"]}).fetch();
     }
 });
 
@@ -222,6 +227,16 @@ Template.displayList.helpers({
   "assembleList": function () {
   return arrOfJSONtoArr(this.val,'name');
   }
+});
+
+// helpers added 9/11
+Template.displayOther.helpers({
+  chosenOne: function() {
+    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+  },
+  product:  function() {
+    return productName();   
+  },
 });
 
 Template.displayPPE.helpers({
