@@ -1,0 +1,65 @@
+App database development
+
+Issues and decisions from 9 September 2015 
+Bold italics indicate remarks on 26 Jan 2016
+
+1. The list of pesticides are not in alphabetical order, and wondering if this is something that could be done.
+- helpful for data entry.  
+> Verify that labels will are in alphabetical order for both database and App
+
+2.  I think it would be great to have a separate field for the formulation of the product (sometimes it could be confusing when just looking at the name of the product).
+- add Whole words -  Right after product name.
+> verify that this field has been added. 
+
+3. About the English/Spanish,...\\It would be possible to enter the data for both languages and have it showing in the web page as one language to the left, and the correspondence translation to the right (even if the words are smaller)? As it is now, it looks crowded and busy after entering all the information for the labels. 
+- resolved. This is just a data entry database not what users will see.  
+N/A
+- Pablo to start Spanish English translation in Excel separated by field.
+- posted on github
+> Verify Pablo is entering directly into database.
+
+4. The option: Other, is not active. It would be nice to have it active. Some labels have more information than others.
+- ask Jerry to activate.  
+> Verify other is active.  
+
+5. Some labels specify information about chemigation, drift, etc. This goes in the environmental hazard section (for chemigation, those aspects about health and safety). Should be better to have  DRIFT as a separate option in the database?
+- Pablo to watch for and put in notes.  
+- Kit will give Jerry option to either add chemigation and drift as separate fields now that may or may not be used.  Or Pablo to Note
+> Re drift see 7 Jan notes.
+> Re chemigation check with Pablo on frequency, many need to go into other or general.
+6. Storage and disposal is a good aspect about health and safety. Should it be included?
+- Jerry please a storage and disposal field.
+> Verify that this field was added. 
+
+7. Some labels specify information about DIRECTIONS FOR USE, and USE RESTRICTIONS. Some of the information included is about health and safety. These information could be added to the OTHER option of the database.
+- put in other section, only if related to worker health.  
+
+8. It would be good for the database to add the pre-harvest interval (for apples and pears).
+add:  - - -Pre-harvest interval pears and apples. 
+	Verify that pre-harvest interval this was added.
+ 
+
+7 January 2016 issues and Decisions (Kit and Pablo)
+
+1.	Drift and off target movement (water and air). Should drift content in labels be included?
+2.	Notes
+a.	It is not on many labels for people for aerosol applied from the ground
+b.	Language is not consistent
+c.	If it was a new field, then it would be blank for most labels, and a blank field could be interpreted in different ways including, drift is not import to worry about
+d.	As to water, scope does not include environmental hazards.  
+e.	Scope is applicators and those you may enter the application zone prior to the re-entry time determined by the REI.
+f.	One idea, is to have a separate page for all products that is not the label, but includes several general tips.  
+	Add a general tips page.  It will be the same for all labels. 
+
+3.	Directions for use.  
+a.	One section shows up frequently that there is something related to re-entry worker H&S or controls
+b.	Put the subsections that fit the criteria see #1, under the applicable field.  
+c.	Rename to field on the app to
+	Rename/add the field “Agriculture Use Requirements (re-entry workers).”
+
+4.	Use Restrictions:
+a.	Does not show up often, but usually refers to non-agricultural use.
+b.	No new field. 
+c.	It can be under other
+d.	Consider a tip.
+	Put statement in on general tip page, as to non-ag use.
