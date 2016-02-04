@@ -65,7 +65,7 @@ title of the field (in bold).
 
 <template name="displayAgEnviron">
 <h3>Agricultural and Environmental Concerns for {{product}}</h3>
-  {{> displayArea what="Agricultural Use Requirements" 
+  {{> displayArea what="Agriculture Use: Reentry Workers" 
       val=chosenOne.agUseReq }}
   {{> displayArea what="Environmental Hazards" 
       val=chosenOne.envHaz }}
@@ -477,10 +477,10 @@ title of the field (in bold).
   {{> formTextarea what="User Safety Recommendations (spanish)" 
       val=chosenOne.safetyRecsEsp
       name="safetyRecsEsp" rows=6 }}
-  {{> formTextarea what="Agricultural Use Requirements" 
+  {{> formTextarea what="Agriculture Use: Reentry Workers" 
       val=chosenOne.agUseReq
       name="agUseReq" rows=6 }}
-  {{> formTextarea what="Agricultural Use Requirements (spanish)" 
+  {{> formTextarea what="Agriculture Use: Reentry Workers (spanish)" 
       val=chosenOne.agUseReqEsp
       name="agUseReqEsp" rows=6 }}
   {{> formTextarea what="Environmental Hazards" 
