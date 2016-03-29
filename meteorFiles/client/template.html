@@ -1,7 +1,7 @@
 <template name="main">
 <!-- Called from labels.html; main -->
-<p><strong><em>Click on the title of the options to see just a subset of the 
-information.<br />Edit All shows all and allows editing by clicking on the 
+<p><strong><em>Click on the title of the options to see just a subset of the
+information.<br />Edit All shows all and allows editing by clicking on the
 title of the field (in bold).
 </em></strong></p>
 
@@ -26,15 +26,15 @@ title of the field (in bold).
     {{> displayPPE}}
   {{/if}}
   {{#if infoIsAg}}
-    {{> displayAgEnviron}}    
-  {{/if}}  
-  {{#if infoIsControls}}
-    {{> displayControls}}    
+    {{> displayAgEnviron}}
   {{/if}}
-  <!-- if clause added 9/11 -->  
+  {{#if infoIsControls}}
+    {{> displayControls}}
+  {{/if}}
+  <!-- if clause added 9/11 -->
   {{#if infoIsOther}}
-    {{> displayOther}}    
-  {{/if}}  
+    {{> displayOther}}
+  {{/if}}
   {{#if editInfo}}
     {{> single}}
   {{/if}}
@@ -49,7 +49,7 @@ title of the field (in bold).
 <template name="checkPest">
 <!-- Creates checkbox for pest with name n; JS function pcheck returns
      checked or empty -->
-<input type="checkbox" class="inp" name={{n}} id={{n}} 
+<input type="checkbox" class="inp" name={{n}} id={{n}}
    {{pcheck}}  />{{n}} &nbsp;
 </template>
 
@@ -65,14 +65,14 @@ title of the field (in bold).
 
 <template name="displayAgEnviron">
 <h3>Agricultural and Environmental Concerns for {{product}}</h3>
-  {{> displayArea what="Agriculture Use: Reentry Workers" 
+  {{> displayArea what="Agriculture Use: Reentry Workers"
       val=chosenOne.agUseReq }}
-  {{> displayArea what="Environmental Hazards" 
+  {{> displayArea what="Environmental Hazards"
       val=chosenOne.envHaz }}
 </template>
 
 <template name="displayArea">
-<!-- displays text with returns substituted for ;; 
+<!-- displays text with returns substituted for ;;
     (insertBreaksP function -->
 <p><strong>{{what}}</strong></p>
 {{{insertBreaksP}}}
@@ -80,18 +80,21 @@ title of the field (in bold).
 
 <template name="displayArsenic">
 <!-- displays values for arsenic % and amount elemental -->
-<p><strong>Arsenic: </strong>{{this.p}} %; {{this.e}} 
+<p><strong>Arsenic: </strong>{{this.p}} %; {{this.e}}
      elemental</p>
 </template>
 
 <template name="displayControls">
 <h3>Engineering and Other Controls for {{product}}</h3>
-  {{> displayArea what="Physical or Chemical Hazards" 
+  {{> displayArea what="Physical or Chemical Hazards"
       val=chosenOne.physHaz}}
-  {{> displayArea what="Engineering controls" 
+  {{> displayArea what="Engineering controls"
       val=chosenOne.engControls }}
+  <!-- Added 3/29/2016 by JTY -->
+  {{> displayArea what="Directions for use"
+      val=chosenOne.directionsForUse }}
   <!-- added 9/11 -->
-  {{> displayArea what="Storage and Disposal" 
+  {{> displayArea what="Storage and Disposal"
       val=chosenOne.storageDisposal }}
 </template>
 
@@ -99,29 +102,29 @@ title of the field (in bold).
 <h3>First Aid Information for {{product}}</h3>
   {{> displayArea what="First Aid, if in eyes" val=chosenOne.firstAid }}
   {{> displayArea what="First Aid, if swallowed" val=chosenOne.swallowed }}
-  {{> displayArea what="First Aid, if on skin or clothing" 
+  {{> displayArea what="First Aid, if on skin or clothing"
       val=chosenOne.skin  }}
-  {{> displayArea what="First Aid, if inhaled" 
+  {{> displayArea what="First Aid, if inhaled"
       val=chosenOne.inhaled}}
-   {{> displayArea what="First Aid, Note to Physician" 
+   {{> displayArea what="First Aid, Note to Physician"
       val=chosenOne.physician }}
-   {{> displayArea what="First Aid, When calling poison center" 
+   {{> displayArea what="First Aid, When calling poison center"
       val=chosenOne.centerCall }}
 </template>
 
 <template name="displayHealth">
 <h3>Health Information for {{product}}</h3>
   {{> displayItem what="Signal Word" val=chosenOne.signal }}
-  {{> displayArea what="Hazard Statement" 
+  {{> displayArea what="Hazard Statement"
       val=chosenOne.hazardStmt }}
-  {{> displayArea what="Precautionary Statement" 
+  {{> displayArea what="Precautionary Statement"
       val=chosenOne.precaution }}
-  {{> displayArea what="User Safety Recommendations" 
+  {{> displayArea what="User Safety Recommendations"
       val=chosenOne.safetyRecs }}
 </template>
 
 <template name="displayIngredient">
-<!-- displays list of either active or inert ingredients (this.what) 
+<!-- displays list of either active or inert ingredients (this.what)
     with names and percents -->
 <p><strong>{{this.what}}</strong></p>
   {{#each this.val}}
@@ -144,13 +147,13 @@ title of the field (in bold).
 <!-- template added 9/11 -->
 <template name="displayOther">
 <h3>Other entries for {{product}}</h3>
-  {{> displayArea what="Notes for this entry" 
+  {{> displayArea what="Notes for this entry"
       val=chosenOne.entryNotes }}
 </template>
 
 <template name="displayPPE">
 <h3>Personal Protective Equipment (PPE) for {{product}}</h3>
-  {{> displayArea what="Personal Protective Equipment" 
+  {{> displayArea what="Personal Protective Equipment"
       val=chosenOne.ppe }}
 </template>
 
@@ -167,7 +170,7 @@ title of the field (in bold).
       name="producer" }}
   {{> displayItem what="EPA number" val=chosenOneX.epa
       name="epa" }}
-  {{> displayItem what="Production Establishment number" 
+  {{> displayItem what="Production Establishment number"
       val=chosenOneX.establishment }}
   {{> displayItem what="Net measure" val=chosenOneX.measure }}
   {{> displayArsenic p=chosenOneX.arsenic.percent
@@ -178,16 +181,16 @@ title of the field (in bold).
      }}
   {{> displayItem what="Producer address:" val=chosenOneX.address }}
   {{> displayItem what="Emergency contact phone:" val=chosenOneX.phone }}
-  {{> displayItem what="Restricted Entry Interval (REI):" 
+  {{> displayItem what="Restricted Entry Interval (REI):"
       val=chosenOneX.rei }}
   <!-- added 9/11 -->
-  {{> displayItem what="Pre-harvest Interval (PHI):" 
+  {{> displayItem what="Pre-harvest Interval (PHI):"
       val=chosenOneX.phi }}
-  {{> displayRadio what="Restricted Use Material:" 
+  {{> displayRadio what="Restricted Use Material:"
       val=chosenOneX.restricted }}
   {{> displayItem what="Signal Word" val=chosenOneX.signal }}
   {{> displayItem what="Signal Word (spanish)" val=chosenOneX.signalEsp }}
-  {{> displayRadio what="Keep out of reach of children" 
+  {{> displayRadio what="Keep out of reach of children"
       val=chosenOneX.children }}
 </template>
 
@@ -290,7 +293,7 @@ title of the field (in bold).
 </template>
 
 <template name="newForm">
-<!-- creates form with tags for entering initial data 
+<!-- creates form with tags for entering initial data
     for new materials -->
   <h3>Insert new material</h3>
   <form class="newMaterial">
@@ -342,10 +345,10 @@ title of the field (in bold).
     ident="firstAid" }} |
   {{> pageButton titl="PPE" openClass="itemAvailable"
     ident="ppe" }} |
-  {{> pageButton titl="Agricultural and Environmental" 
+  {{> pageButton titl="Agricultural and Environmental"
     openClass="itemAvailable"
     ident="agEnviron" }} |
-  {{> pageButton titl="Engineering controls" 
+  {{> pageButton titl="Engineering controls"
     openClass="itemAvailable"
     ident="controls" }} |
   {{> pageButton titl="Other" openClass="itemAvailable"
@@ -360,7 +363,7 @@ title of the field (in bold).
   <div class="editOff" id="pestList">
   <p><strong class="editable">Pests:</strong></p>
   <p class="checklist">
-  {{> checkPest n="codling moth" ar=val }} 
+  {{> checkPest n="codling moth" ar=val }}
   {{> checkPest n="leafrollers" ar=val}}
   {{> checkPest n="spider mites"  ar=val}}
   {{> checkPest n="pear rust mite"  ar=val}}
@@ -383,7 +386,7 @@ title of the field (in bold).
   <!-- Field added 9/11 -->
   {{> formItem what="Formulation" val=chosenOne.formulation
       name="formulation" }}
-  {{> formItem what="Formulation (in Spanish)" 
+  {{> formItem what="Formulation (in Spanish)"
       val=chosenOne.formulationEsp
       name="formulation" }}
   {{> pestList what="Pests" val=chosenOne.pests
@@ -392,7 +395,7 @@ title of the field (in bold).
       name="producer" }}
   {{> formItem what="EPA number" val=chosenOne.epa
       name="epa" }}
-  {{> formItem what="Production Establishment number" 
+  {{> formItem what="Production Establishment number"
       val=chosenOne.establishment name="establishment" }}
   {{> formItem what="Net measure" val=chosenOne.measure
       name="measure" }}
@@ -419,97 +422,104 @@ title of the field (in bold).
       name="signalEsp" }}
   {{> formItem what="Precautionary Statement" val=chosenOne.precaution
       name="precaution" }}
-  {{> formItem what="Precautionary Statement (spanish)" 
+  {{> formItem what="Precautionary Statement (spanish)"
       val=chosenOne.precautionEsp
       name="precautionEsp" }}
-  {{> formRadio what="Keep out of reach of children" 
+  {{> formRadio what="Keep out of reach of children"
       val=chosenOne.children
       name="children" values="yes,no" }}
   {{> formTextarea what="First Aid, if in eyes" val=chosenOne.firstAid
       name="firstAid" rows=6 }}
-  {{> formTextarea what="First Aid,  if in eyes (spanish)" 
+  {{> formTextarea what="First Aid,  if in eyes (spanish)"
       val=chosenOne.firstAidEsp
       name="firstAidEsp" rows=6 }}
   {{> formTextarea what="First Aid, if swallowed" val=chosenOne.swallowed
       name="swallowed" rows=6 }}
-  {{> formTextarea what="First Aid,  if in swallowed (spanish)" 
+  {{> formTextarea what="First Aid,  if in swallowed (spanish)"
       val=chosenOne.swallowedEsp
       name="swallowedEsp" rows=6 }}
-  {{> formTextarea what="First Aid, if on skin or clothing" 
+  {{> formTextarea what="First Aid, if on skin or clothing"
       val=chosenOne.skin
       name="skin" rows=6 }}
-  {{> formTextarea what="First Aid,  if on skin or clothing (spanish)" 
+  {{> formTextarea what="First Aid,  if on skin or clothing (spanish)"
       val=chosenOne.skinEsp
       name="skinEsp" rows=6 }}
-  {{> formTextarea what="First Aid, if inhaled" 
+  {{> formTextarea what="First Aid, if inhaled"
       val=chosenOne.inhaled
       name="inhaled" rows=6 }}
-  {{> formTextarea what="First Aid,  if inhaled (spanish)" 
+  {{> formTextarea what="First Aid,  if inhaled (spanish)"
       val=chosenOne.inhaledEsp
       name="inhaledEsp" rows=6 }}
-  {{> formTextarea what="First Aid, Note to Physician" 
+  {{> formTextarea what="First Aid, Note to Physician"
       val=chosenOne.physician
       name="physician" rows=6 }}
-  {{> formTextarea what="First Aid, Note to Physician (spanish)" 
+  {{> formTextarea what="First Aid, Note to Physician (spanish)"
       val=chosenOne.physicianEsp
       name="physicianEsp" rows=6 }}
-  {{> formTextarea what="First Aid, When calling poison center" 
+  {{> formTextarea what="First Aid, When calling poison center"
       val=chosenOne.centerCall
       name="centerCall" rows=6 }}
-  {{> formTextarea what="First Aid, When calling poison center (spanish)" 
+  {{> formTextarea what="First Aid, When calling poison center (spanish)"
       val=chosenOne.centerCallEsp
       name="centerCallEsp" rows=6 }}
-  {{> formTextarea what="Hazard Statement" 
+  {{> formTextarea what="Hazard Statement"
       val=chosenOne.hazardStmt
       name="hazardStmt" rows=6 }}
-  {{> formTextarea what="Hazard Statement (spanish)" 
+  {{> formTextarea what="Hazard Statement (spanish)"
       val=chosenOne.hazardStmtEsp
       name="hazardStmtEsp" rows=6 }}
-  {{> formTextarea what="Personal Protective Equipment" 
+  {{> formTextarea what="Personal Protective Equipment"
       val=chosenOne.ppe
       name="ppe" rows=6 }}
-  {{> formTextarea what="Personal Protective Equipment (spanish)" 
+  {{> formTextarea what="Personal Protective Equipment (spanish)"
       val=chosenOne.ppeEsp
       name="ppeEsp" rows=6 }}
-  {{> formTextarea what="User Safety Recommendations" 
+  {{> formTextarea what="User Safety Recommendations"
       val=chosenOne.safetyRecs
       name="safetyRecs" rows=6 }}
-  {{> formTextarea what="User Safety Recommendations (spanish)" 
+  {{> formTextarea what="User Safety Recommendations (spanish)"
       val=chosenOne.safetyRecsEsp
       name="safetyRecsEsp" rows=6 }}
-  {{> formTextarea what="Agriculture Use: Reentry Workers" 
+  {{> formTextarea what="Agriculture Use: Reentry Workers"
       val=chosenOne.agUseReq
       name="agUseReq" rows=6 }}
-  {{> formTextarea what="Agriculture Use: Reentry Workers (spanish)" 
+  {{> formTextarea what="Agriculture Use: Reentry Workers (spanish)"
       val=chosenOne.agUseReqEsp
       name="agUseReqEsp" rows=6 }}
-  {{> formTextarea what="Environmental Hazards" 
+  {{> formTextarea what="Environmental Hazards"
       val=chosenOne.envHaz
       name="envHaz" rows=6 }}
-  {{> formTextarea what="Environmental Hazards (spanish)" 
+  {{> formTextarea what="Environmental Hazards (spanish)"
       val=chosenOne.envHazEsp
       name="envHazEsp" rows=6 }}
-  {{> formTextarea what="Physical or Chemical Hazards" 
+  {{> formTextarea what="Physical or Chemical Hazards"
       val=chosenOne.physHaz
       name="physHaz" rows=6 }}
-  {{> formTextarea what="Physical or Chemical  Hazards (spanish)" 
+  {{> formTextarea what="Physical or Chemical  Hazards (spanish)"
       val=chosenOne.physHazEsp
       name="physHazEsp" rows=6 }}
-  {{> formTextarea what="Engineering controls" 
+  {{> formTextarea what="Engineering controls"
       val=chosenOne.engControls
       name="engControls" rows=6 }}
-  {{> formTextarea what="Engineering controls (spanish)" 
+  {{> formTextarea what="Engineering controls (spanish)"
       val=chosenOne.engControlsEsp
       name="engControlsEsp" rows=6 }}
+  <!-- Added 3/29/2016 by JTY -->
+  {{> formTextarea what="Directions for use"
+      val=chosenOne.directionsForUse
+      name="directionsForUse" rows=6 }}
+  {{> formTextarea what="Directions for use (spanish)"
+      val=chosenOne.directionsForUseEsp
+      name="directionsForUseEsp" rows=6 }}
   <!-- Field added 9/11 -->
-  {{> formTextarea what="Storage and disposal" 
+  {{> formTextarea what="Storage and disposal"
       val=chosenOne.storageDisposal
       name="storageDisposal" rows=6 }}
-  {{> formTextarea what="Storage and disposal (spanish)" 
+  {{> formTextarea what="Storage and disposal (spanish)"
       val=chosenOne.storageDisposalEsp
       name="storageDisposalEsp" rows=6 }}
   <!-- Field added 9/11 -->
-  {{> formTextarea what="Notes for this entry" 
+  {{> formTextarea what="Notes for this entry"
       val=chosenOne.entryNotes
       name="entryNotes" rows=6 }}
 </template>
