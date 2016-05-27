@@ -53,6 +53,13 @@ title of the field (in bold).
    {{pcheck}}  />{{n}} &nbsp;
 </template>
 
+<template name="checkPestEsp">
+<!-- Creates checkbox for pest with name n; JS function pcheck returns
+     checked or empty -->
+<input type="checkbox" class="inp" name={{n}} id={{n}}
+   {{pespcheck}}  />{{n}} &nbsp;
+</template>
+
 <template name="chooseOne">
 <!-- sets up select element to use choose material or new material -->
   <select id="selMat">
@@ -144,6 +151,13 @@ title of the field (in bold).
   </p>
 </template>
 
+<template name="displayListEsp">
+<!-- displays a list of pests -->
+  <p><strong>Pests (Spanish):</strong>
+    {{assembleList}}
+  </p>
+</template>
+
 <!-- template added 9/11 -->
 <template name="displayOther">
 <h3>Other entries for {{product}}</h3>
@@ -164,8 +178,12 @@ title of the field (in bold).
   <!-- added 9/11 -->
   {{> displayItem what="Formulation" val=chosenOneX.formulation
       name="formulation" }}
+  {{> displayItem what="Formulation (Spanish)" val=chosenOneX.formulationEsp
+      name="formulationEsp" }}
   {{> displayList what="Pests" val=chosenOneX.pests
       name="pests" }}
+  {{> displayListEsp what="Pests (Spanish)" val=chosenOneX.pestsEsp
+      name="pestsEsp" }}
   {{> displayItem what="Producer" val=chosenOneX.producer
       name="producer" }}
   {{> displayItem what="EPA number" val=chosenOneX.epa
@@ -179,7 +197,11 @@ title of the field (in bold).
      }}
   {{> displayIngredient what="Inert Ingredients:" val=chosenOneX.inert
      }}
+  {{> displayItem what="Class:" val=chosenOneX.class }}
+  {{> displayItem what="Class (Spanish):" val=chosenOneX.classEsp }}
+  {{> displayItem what="Rating:" val=chosenOneX.rating }}
   {{> displayItem what="Producer address:" val=chosenOneX.address }}
+  {{> displayItem what="Producer Phone:" val=chosenOneX.producerPhone }}
   {{> displayItem what="Emergency contact phone:" val=chosenOneX.phone }}
   {{> displayItem what="Restricted Entry Interval (REI):"
       val=chosenOneX.rei }}
@@ -378,6 +400,26 @@ title of the field (in bold).
   </div>
 </template>
 
+<template name="pestListEsp">
+<!-- creates checklist of pests -->
+  <div class="editOff" id="pestListEsp">
+  <p><strong class="editable">Pests (in Spanish):</strong></p>
+  <p class="checklist">
+  {{> checkPestEsp n="polilla de la manzana" ar=val }}
+  {{> checkPestEsp n="enrolladores" ar=val}}
+  {{> checkPestEsp n="ácaros de la araña"  ar=val}}
+  {{> checkPestEsp n="pera óxido ácaro"  ar=val}}
+  {{> checkPestEsp n="pulgón lanoso" ar=val }}
+  {{> checkPestEsp n="psílido del peral"  ar=val}}
+  {{> checkPestEsp n="fuego bacteriano" ar=val }}
+  </p>
+  <p></p>
+  <p><span>{{valScript}}</span></p>
+  <p class="buttons"><input type="button" class="pespupdate" value="Update" />
+  <input type="button" class="pespcancel" value="Close" /></p>
+  </div>
+</template>
+
 <template name="single">
 <!-- displays all values in database entry; clicking on title will
   bring up editor for item -->
@@ -388,9 +430,11 @@ title of the field (in bold).
       name="formulation" }}
   {{> formItem what="Formulation (in Spanish)"
       val=chosenOne.formulationEsp
-      name="formulation" }}
+      name="formulationEsp" }}
   {{> pestList what="Pests" val=chosenOne.pests
       name="pests" }}
+  {{> pestListEsp what="Pests (in Spanish)" val=chosenOne.pestsEsp
+      name="pestsEsp" }}
   {{> formItem what="Producer" val=chosenOne.producer
       name="producer" }}
   {{> formItem what="EPA number" val=chosenOne.epa
@@ -405,10 +449,18 @@ title of the field (in bold).
      activeInert="active"}}
   {{> formIngredient what="Inert Ingredients:" val=chosenOne.inert
      activeInert="inert"}}
+  {{> formItem what="Class:" val=chosenOne.class
+      name="class" }}
+  {{> formItem what="Class (Spanish):" val=chosenOne.classEsp
+      name="classEsp" }}
+  {{> formItem what="Rating:" val=chosenOne.Rating
+      name="rating" }}
   {{> formItem what="Producer address:" val=chosenOne.address
       name="address" }}
   {{> formItem what="Emergency contact phone:" val=chosenOne.phone
       name="phone" }}
+  {{> formItem what="Producer Phone:" val=chosenOne.producerPhone
+      name="producerPhone" }}
   {{> formItem what="Restricted Entry Interval (REI):" val=chosenOne.rei
       name="rei" }}
   <!-- Field added 9/11 -->
@@ -430,7 +482,7 @@ title of the field (in bold).
       name="children" values="yes,no" }}
   {{> formTextarea what="First Aid, if in eyes" val=chosenOne.firstAid
       name="firstAid" rows=6 }}
-  {{> formTextarea what="First Aid,  if in eyes (spanish)"
+  {{> formTextarea what="First Aid, if in eyes (spanish)"
       val=chosenOne.firstAidEsp
       name="firstAidEsp" rows=6 }}
   {{> formTextarea what="First Aid, if swallowed" val=chosenOne.swallowed

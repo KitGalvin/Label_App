@@ -8,7 +8,7 @@ Meteor.startup(function () {
   //Accounts.config({forbidClientAccountCreation: true});
 });
 
-//subscribe to database -- matches publish function that runs on the server  
+//subscribe to database -- matches publish function that runs on the server
 Meteor.subscribe('someLabels');
 
 Template.main.helpers({
@@ -18,7 +18,7 @@ Template.main.helpers({
   addNew: function() {
     var val = Session.get("theSelectedOne");
     if (val == "New") {return true;}
-      else {return false;} 
+      else {return false;}
   },
   editOnOff: function() {
     return Session.get("editOnOff");
@@ -118,7 +118,7 @@ function pagePref(ev,screen) {
       k.classList.remove('itemChoosen');
       i.classList.remove('itemAvailable');
       i.classList.add('itemChoosen');
-    } 
+    }
 }
 
 function productName() {
@@ -158,6 +158,18 @@ Template.checkPest.helpers({
 }
 });
 
+Template.checkPestEsp.helpers({
+//reads JSON code to determine if pest is checked
+"pespcheck": function () {
+  var s = arrOfJSONtoArr(this.ar,'name');
+  if (s === this.n) {
+    return "checked";
+  } else {
+    return "";
+  }
+}
+});
+
 Template.chooseOne.helpers({
 //returns all materials in database
   materialChoices: function() {
@@ -181,15 +193,15 @@ Template.chooseOne.events({
 
 Template.displayAgEnviron.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.displayArea.helpers({
-//display longer text sections within page 
+//display longer text sections within page
   "insertBreaksP": function () {
     return insertLineBreakP(this.val);
   }
@@ -197,28 +209,28 @@ Template.displayArea.helpers({
 
 Template.displayControls.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.displayFirstAid.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.displayHealth.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
@@ -229,37 +241,44 @@ Template.displayList.helpers({
   }
 });
 
+Template.displayListEsp.helpers({
+//displays comma delimited list
+  "assembleList": function () {
+  return arrOfJSONtoArr(this.val,'name');
+  }
+});
+
 // helpers added 9/11
 Template.displayOther.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.displayPPE.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.displayProduct.helpers({
   chosenOneX: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   product:  function() {
-    return productName();   
+    return productName();
   },
 });
 
 Template.formIngredient.events({
 //these events add, delete, or update ingredient values
-// they manipulate the visibility of the tags, create the 
+// they manipulate the visibility of the tags, create the
 // JSON code, and update the database
   "click .addone": function (ev) {
     //alert('Add');
@@ -289,7 +308,7 @@ Template.formIngredient.events({
     //alert(JSON.stringify(item));
     Labels.update({_id: Session.get("theSelectedOne")},
         {$set: item});
-    ev.preventDefault();    
+    ev.preventDefault();
   },
   "click .zupdate": function (ev) {
     //alert('Update');
@@ -304,7 +323,7 @@ Template.formIngredient.events({
         {$set: item});
     ii.classList.remove('editOn');
     ii.classList.add('editOff');
-    ev.preventDefault();        
+    ev.preventDefault();
   }
 });
 
@@ -339,7 +358,7 @@ Template.formRadio.events({
         {$set: ex});
     i.classList.remove('editOn');
     i.classList.add('editOff');
-    ev.preventDefault();    
+    ev.preventDefault();
   }
 });
 
@@ -388,19 +407,19 @@ Template.newForm.events({
       switch (t) {
         case 'text' :
         case 'textarea' :
-        case 'hidden' : txt = opt.value; 
+        case 'hidden' : txt = opt.value;
            break;
         case 'select-one' : var ix = opt.selectedIndex;
           txt = opt.options[ix].value; break;
         case 'checkbox' :
-        case 'radio' : 
+        case 'radio' :
           if (opt.checked) {txt = opt.value;}
-            else {iName='0';} 
+            else {iName='0';}
           break;
         default: iName='0';
-      } // switch 
+      } // switch
       if (iName!=='0') {
-        //alert(iName + '('+ t + ') =' + txt); 
+        //alert(iName + '('+ t + ') =' + txt);
         /* if (t === "text") {
           alert("Class = " + opt.className);
         } */
@@ -412,19 +431,19 @@ Template.newForm.events({
                 active.push(
                   {"name" : ingredients.name,
                       "percent" : ingredients.percent});
-                }               
+                }
               if (iName==="percent" && !activeCase) {
                 inert.push(
                   {"name" : ingredients.name,
                       "percent" : ingredients.percent});
-                }               
+                }
               break;
           case "trans": activeCase = false; break;
           default: var zip=0;
         } //switch
-      }  
+      }
     } // for
-    
+
     if (active.length>0) {
       newEntry["active"]=active;
     } //if
@@ -433,16 +452,16 @@ Template.newForm.events({
     } //if
     newEntry["arsenic"]=arsenic;
 
-    //alert(JSON.stringify(newEntry)); 
-    
-    Labels.insert(newEntry);   
-    
+    //alert(JSON.stringify(newEntry));
+
+    Labels.insert(newEntry);
+
     var matName = newEntry["product"];
     alert("Entering " + matName + " ...");
-    
+
     var pid = Labels.findOne({"product": matName})["_id"];
     //alert(pid);
-    
+
     Session.set("theSelectedOne",pid);
   }
 });
@@ -462,9 +481,16 @@ Template.pestList.helpers({
 }
 });
 
+Template.pestListEsp.helpers({
+//returns comma delimited string from JSON array of pests
+"valScript": function () {
+  return arrOfJSONtoArr(this.val,'name');
+}
+});
+
 Template.single.helpers({
   chosenOne: function() {
-    return Labels.findOne({_id: Session.get("theSelectedOne")});    
+    return Labels.findOne({_id: Session.get("theSelectedOne")});
   },
   displayUse: function(st) {
   // converts yes and no to boolean
@@ -473,7 +499,7 @@ Template.single.helpers({
 });
 
 Template.single.events({
-//Event handlers for editing existing information for current chosen 
+//Event handlers for editing existing information for current chosen
 //  material; manages the visibility of the editors, generates JSON
 //  code and updates the database
   "click .editable": function(ev) {
@@ -489,7 +515,7 @@ Template.single.events({
     i.classList.toggle('editOn');
     //i.style.color='green';
     //alert(i.className);
-    ev.preventDefault();    
+    ev.preventDefault();
   },
   "click .update": function(ev) {
     //alert('Update clicked');
@@ -510,7 +536,7 @@ Template.single.events({
     //alert('value = '+ val);
     var ex = Object.create(null);
     ex[nm]=val;
-    //alert(JSON.stringify(ex));    
+    //alert(JSON.stringify(ex));
     Labels.update({_id: Session.get("theSelectedOne")},
         {$set: ex});
     i.classList.remove('editOn');
@@ -535,7 +561,7 @@ Template.single.events({
       var nm = inp[j].name;
       var val=inp[j].value;
       arsenic[nm]=val;
-    }   
+    }
     Labels.update({_id: Session.get("theSelectedOne")},
         {$set: {"arsenic" : arsenic}});
     i.classList.remove('editOn');
@@ -584,9 +610,30 @@ Template.single.events({
     Labels.update({_id: Session.get("theSelectedOne")},
         {$set: p});
     i.classList.remove('editOn');
-    i.classList.add('editOff');  
-  }            
+    i.classList.add('editOff');
+  },
+  "click .pespcancel": function(ev) {
+    var i = ev.target.closest('div');
+    i.classList.remove('editOn');
+    i.classList.add('editOff');
+  },
+  "click .pespupdate": function(ev) {
+    var i = ev.target.closest('div');
+    var inp = i.getElementsByClassName('inp');
+    var pestsEsp = new Array();
+    for (var j=0; j<inp.length; j++) {
+      if (inp[j].checked) {
+        var ex = Object.create(null);
+        ex["name"]=inp[j].id;
+        pestsEsp.push(ex);
+      }
+    }
+    var p = Object.create(null);
+    p["pestsEsp"]=pestsEsp;
+    //alert(JSON.stringify(p));
+    Labels.update({_id: Session.get("theSelectedOne")},
+        {$set: p});
+    i.classList.remove('editOn');
+    i.classList.add('editOff');
+  }
 });
-
-
-    
