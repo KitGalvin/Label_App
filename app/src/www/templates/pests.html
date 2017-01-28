@@ -1,0 +1,58 @@
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+           <!-- Home button -->
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <h1 class="title">{{'pest_lable' | translate}}</h1>
+            
+    <!-- Toggle language button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar> 
+<div class="bar bar-subheader item-input-inset bar-light">
+    <p class="page-instructions">{{'tapOnPest_lable' | translate}}</p>
+</div>
+<div class="bar bar-subheader item-input-inset bar-light">
+
+        <!-- Search section -->
+        <lable class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" ng-model="query" placeholder="Search">
+        </lable><!-- End of search-->
+
+</div><!-- End of subheader-->
+
+<!-- List all the pests -->
+<ion-content class="padding has-subheader2">
+    <ion-list>
+        <div ng-repeat="pest in pestInfo | filter:query track by $index" >
+            <ion-item class="item-stable" ng-click="toggleGroup(pest)"
+                    ng-class="{active: isGroupShown(pest)}">
+                <i class="icon" ng-class="isGroupShown(pest) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{pest.pestName}}
+            </ion-item>
+            <ion-item class="item-accordion item item-icon-right" 
+                    ng-repeat="product in pest.usedProducts | orderBy : 'name' track by $index" ng-click="setCrProduct({{'product.name'}})"
+                    ng-show="isGroupShown(pest)">
+            {{product.name}}
+                <i class="icon ion-chevron-right icon-accessory"></i>
+          </ion-item>
+        
+        </div>
+    </ion-list>
+   
+</ion-content>
+ <ion-footer-bar class="bar-balanced tabs">
+     <div>
+          <a href="#/searchBy" class="button button-icon">
+          <i class="icon ion-ios-search-strong"></i>
+          {{'newSearch_lable' | translate}}
+          </a>
+        </div>
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

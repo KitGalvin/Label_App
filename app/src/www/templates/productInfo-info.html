@@ -1,0 +1,91 @@
+<!-- Product information page -->
+<!--Header section of the page -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'productInfo_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+</ion-header-bar>
+
+<ion-content>
+    <ion-list>
+        <ion-item class="item-text-wrap" ng-show="productInfo.class">
+            <table>
+                <tr>
+                    <td class="group-cell"> {{'group_lable' | translate}}</td>
+                    <td class="rating-cell"> 
+                        <p ng-show="getLan()=='en'">{{productInfo.rating}}</p>
+                        <p ng-show="getLan()=='es'">{{productInfo.ratingEsp}}</p>
+                    </td>
+                    <td class="class-cell"> 
+                        <p ng-show="getLan()=='en'">{{productInfo.class}}</p>
+                        <p ng-show="getLan()=='es'">{{productInfo.classEsp}}</p>
+                    </td>
+                </tr>
+            </table>
+        </ion-item>
+
+        <ion-item class="item-text-wrap">
+            <h3>{{'formulation_lable'|translate}}:</h3>
+            <p ng-show="getLan()=='en'">{{productInfo.formulation}}</p>
+            <p ng-show="getLan()=='es'">{{productInfo.formulationEsp}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap sub-section">
+            <h3>{{'forAgriculturalUse_lable'|translate}}</h3>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'active_lable'|translate}}:</h3>
+            <div ng-repeat="active in productInfo.active">
+                <p>{{active.name}} : {{active.percent}}%</p>
+            </div>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'inert_lable'|translate}}:</h3>
+            <div ng-repeat="inert in productInfo.inert">
+                <p>{{inert.name}} : {{inert.percent}}%</p>
+            </div>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'epa_lable'|translate}}:</h3><p>{{productInfo.epa}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'restricted_lable'|translate}}:</h3><p>{{productInfo.restricted}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap signal-word">
+            <h3>{{'children_lable'|translate}}:</h3>
+            <p ng-show="getLan()=='en'">{{productInfo.signal}}</p>
+            <p ng-show="getLan()=='es'">{{productInfo.signalEsp}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'measure_lable'|translate}}:</h3><p>{{productInfo.measure}}</p>
+        </ion-item>
+    </ion-list>
+    
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#" disabled="true">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#/productInfoProducer/{{productName}}">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

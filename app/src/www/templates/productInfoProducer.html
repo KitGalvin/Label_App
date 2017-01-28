@@ -1,0 +1,50 @@
+<!-- Producer information page -->
+<!--Header section of the page -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'producerInfo_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+</ion-header-bar>
+
+<ion-content>
+    <ion-list>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'producer_lable'|translate}}:</h3><p>{{productInfo.producer}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'establishment_lable'|translate}}:</h3><p>{{productInfo.establishment}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'address_lable'|translate}}:</h3><p>{{productInfo.address}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap">
+            <h3>{{'producerPhone_lable'|translate}}:</h3><p>{{productInfo.producerPhone}}</p>
+        </ion-item>
+    </ion-list>
+    
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#/productInfoInfo/{{productName}}">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#/productInfoFirstAid/{{productName}}">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

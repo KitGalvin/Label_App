@@ -1,0 +1,91 @@
+<!-- Credits and links page -->
+<!--Header section of the page -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'creditsAndLinks_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+<ion-content>
+    <ion-list>
+        
+        <ion-item class="item-text-wrap" ng-show="getLan()=='en'">
+            <p>Pesticide labels for Products Registered Washington and Oregon States</p>
+            <p>Pesticide Information Center Online Label (PICOL) Databases</p>
+            <a href="#" onclick="window.open('http://cru66.cahe.wsu.edu/labels/Labels.php', '_system', 'location=yes'); return false;">http://cru66.cahe.wsu.edu/labels/Labels.php</a>
+            <p>Searchable database for current approved labels. (English Only)</p>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="getLan()=='es'">
+            <p>Pesticide labels for Products Registered Washington and Oregon States</p>
+            <p>Pesticide Information Center Online Label (PICOL) Databases</p>
+            <a href="#" onclick="window.open('http://cru66.cahe.wsu.edu/labels/Labels.php', '_system', 'location=yes'); return false;">http://cru66.cahe.wsu.edu/labels/Labels.php</a>
+            <p>Searchable database for current approved labels. (solo en inglés)</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="getLan()=='en'">
+            <p>Washington State Department of Labor and Industries (LNI)</p>
+            <p>Agriculture site: <a href="#" onclick="window.open('http://www.lni.wa.gov/safety/topics/atoz/topic.asp?KWID=353', '_system', 'location=yes'); return false;">http://www.lni.wa.gov/safety/topics/atoz/topic.asp?KWID=353</a></p>
+            <p>Spanish site/Sitio en español: <a href="#" onclick="window.open('http://www.lni.wa.gov/Spanish/', '_system', 'location=yes'); return false;">http://www.lni.wa.gov/Spanish/</a></p>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="getLan()=='es'">
+            <p>Departamento de Labor e Industrias del Estado de Washington (LNI, por sus siglas en inglés)</p>
+            <p>Sitio agrícola (en inglés): <a href="#" onclick="window.open('http://www.lni.wa.gov/safety/topics/atoz/topic.asp?KWID=353', '_system', 'location=yes'); return false;">http://www.lni.wa.gov/safety/topics/atoz/topic.asp?KWID=353</a></p>
+            <p>Sitio en español: <a href="#" onclick="window.open('http://www.lni.wa.gov/Spanish/', '_system', 'location=yes'); return false;">http://www.lni.wa.gov/Spanish/</a></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="getLan()=='en'">
+            <p>Washington State Department of Agriculture</p>
+            <p>Farmworker Education: <a href="#" onclick="window.open('http://agr.wa.gov/pestfert/licensinged/farmworkereducation.aspx', '_system', 'location=yes'); return false;">http://agr.wa.gov/pestfert/licensinged/farmworkereducation.aspx</a></p>
+            <p>Some materials available in Spanish/Algunos materiales están disponibles en español.</p>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="getLan()=='es'">
+            <p>Departamento de Agricultura del Estado de Washington (WSDA, por sus siglas en inglés)</p>
+            <p>Educación de Trabajadores Agrícolas: <a href="#" onclick="window.open('http://agr.wa.gov/pestfert/licensinged/farmworkereducation.aspx', '_system', 'location=yes'); return false;">http://agr.wa.gov/pestfert/licensinged/farmworkereducation.aspx</a></p>
+            <p>Algunos materiales están disponibles en español.</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="getLan()=='en'">
+            <p>National Pesticide Information Center (NPIC)</p>
+            <p>English: <a href="#" onclick="window.open('http://npic.orst.edu/', '_system', 'location=yes'); return false;">http://npic.orst.edu/</a></p>
+            <p>Spanish/Español: <a href="#" onclick="window.open('http://npic.orst.edu/index.es.html', '_system', 'location=yes'); return false;">http://npic.orst.edu/index.es.html</a></p>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="getLan()=='es'">
+            <p>Centro Nacional de Información de Pesticidas (NPIC, por sus siglas en inglés)</p>
+            <p>Inglés: <a href="#" onclick="window.open('http://npic.orst.edu/', '_system', 'location=yes'); return false;">http://npic.orst.edu/</a></p>
+            <p>Español: <a href="#" onclick="window.open('http://npic.orst.edu/index.es.html', '_system', 'location=yes'); return false;">http://npic.orst.edu/index.es.html</a></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="getLan()=='en'">
+            <p>Pacific Northwest Agricultural Safety and Health Center (PNASH)</p>
+            <a href="#" onclick="window.open('http://deohs.washington.edu/pnash/', '_system', 'location=yes'); return false;">http://deohs.washington.edu/pnash/</a>
+            <p>Has educational materials and videos in English and Spanish for Pesticide safety, heat-related illness, ladder safety and more.</p>
+            <p>Tiene materiales educacionales y videos en inglés y español en seguridad con los pesticidas, enfermedades por el calor, seguridad con las escaleras y más.</p>
+        </ion-item>
+        <ion-item class="item-text-wrap" ng-show="getLan()=='es'">
+            <p>Centro de Seguridad y Salud en la Agricultura del Noroeste del Pacífico (PNASH, por sus siglas en inglés)</p>
+            <a href="#" onclick="window.open('http://deohs.washington.edu/pnash/', '_system', 'location=yes'); return false;">http://deohs.washington.edu/pnash/</a>
+            <p>Tiene materiales educacionales y videos en inglés y español en seguridad con los pesticidas, enfermedades por el calor, seguridad con las escaleras y más.</p>
+        </ion-item>
+        
+    </ion-list>
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#/productInfoSafelyInfo/{{productName}}">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#" disabled="true">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

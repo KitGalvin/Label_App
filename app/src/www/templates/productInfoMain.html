@@ -1,0 +1,70 @@
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h1 class="title marquee">{{'content_lable' | translate}} : {{productInfo.product}}</h1>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<div class="bar bar-subheader item-input-inset bar-light">
+    <p class="page-instructions">{{'tapOnInfo_lable' | translate}}</p>
+</div>
+
+<ion-content class="padding has-subheader">
+    <ion-list>
+        <ion-item class="item item-icon-right" href="#/productInfoInfo/{{productName}}">
+            {{'productInfo_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoProducer/{{productName}}">
+            {{'producerInfo_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoFirstAid/{{productName}}">
+            {{'firstAid_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoHealth/{{productName}}">
+            {{'healthInfo_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoProtectiveClothing/{{productName}}">
+            {{'protectiveClothing_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoEngControl/{{productName}}">
+            {{'engineeringControls_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoChemicalHazards/{{productName}}">
+            {{'chemicalHazards_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoStorage/{{productName}}">
+            {{'storage_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoSafelyInfo/{{productName}}">
+            {{'safelyInfo_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item class="item item-icon-right" href="#/productInfoCredits/{{productName}}">
+            {{'creditsAndLinks_lable' | translate}}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+            <a class="button icon ion-ios-search" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+    </div>
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

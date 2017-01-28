@@ -1,0 +1,35 @@
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+        <!-- Display the title of the app in the header -->
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <h1 class="title marquee">{{'appName' | translate}}</h1>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+
+<ion-content>
+    <div class="padding">
+        <div class="container">
+            <div class="law">
+                <h4>{{'AgriculturalUse_lable' | translate}}</h4>
+                <p>{{'AgriculturalUse' | translate}}</p>
+                <h4>{{'theLaw' | translate}}</h4>
+            </div>
+            <div class="search-by">
+                <p>{{'searchBy_lable' | translate}}</p>
+                <a class="button button-full button-balanced" href="#/productList">{{'product_lable' | translate}}</a>
+                <a class="button button-full button-balanced" href="#/pests">{{'pest_lable' | translate}}</a>
+            </div>
+        </div> 
+            
+    </div>    
+</ion-content>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

@@ -1,0 +1,49 @@
+<!-- Product List page -->
+<!--Header section of the page -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <h1 class="title">{{'product_lable' | translate}}</h1>
+            <!-- Toggle language button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar> 
+
+<div class="bar bar-subheader item-input-inset bar-light">
+    <p class="page-instructions">{{'tapOnProd_lable' | translate}}</p>
+</div>
+
+<div class="bar bar-subheader item-input-inset bar-light">
+        <!-- Search section -->
+        <lable class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" ng-model="query" placeholder="search">
+        </lable><!-- End of search-->
+
+</div><!-- End of subheader-->
+
+<ion-content class="padding has-subheader2">
+        <!--Lis of products-->
+        <ion-list>
+            <!--filter:query links to the search bar -->
+          <ion-item class="item item-icon-right" ng-repeat='product in products | filter:query | orderBy:product track by $index' item="product" ng-click="setCrProduct({{'product'}})">
+           {{product}}
+           <i class="icon ion-chevron-right icon-accessory"></i>   
+          </ion-item>
+        </ion-list>
+
+</ion-content>
+
+ <ion-footer-bar class="bar-balanced tabs">
+     <div>
+          <a href="#/searchBy" class="button button-icon">
+          <i class="icon ion-ios-search-strong"></i>
+          {{'newSearch_lable' | translate}}
+          </a>
+        </div>
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

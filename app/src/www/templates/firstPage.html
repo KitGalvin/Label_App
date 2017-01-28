@@ -1,0 +1,31 @@
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<!-- Content section of the page -->
+<ion-content class="padding">
+    <div class="app-name">
+        <h2>{{'appName' | translate}}</h2>
+        <h4>{{'forApples_lable' | translate}}</h4>
+    </div>
+    <div >
+        
+        <img ng-src="img/PNASH-logo.png" class="logos">  
+    </div>
+    <div class="continue-buttons">
+    <button class="button button-outline button-block button-balanced icon-right ion-chevron-right" ng-click='continueAs("en")'>Continue in English</button>
+    <button class="button button-outline button-block button-balanced icon-right ion-chevron-right" ng-click='continueAs("es")'>Continue en español</button>
+    </div>
+</ion-content>
+<ion-footer-bar class="bar-balanced">
+    
+</ion-footer-bar>
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>
+

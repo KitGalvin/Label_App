@@ -1,0 +1,82 @@
+<!-- 1st AID page -->
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'firstAid_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<!-- content section -->
+<ion-content>
+    <ion-list>
+         <!--ng-show toggles the visibility of Eng and Esp content -->
+        <!--textWithLineBreaks is a function to replace the ;; in the text-->
+        <ion-item class="sub-section item-text-wrap">
+            <p> {{'poisoning_lable' | translate}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.swallowed">
+            <h3>{{'swallowed_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.swallowed) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.swallowedEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.firstAid">
+            <h3>{{'eyes_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.firstAid) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.firstAidEsp) | sanitize"></p>
+        </ion-item>
+       
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.skin">
+            <h3>{{'skin_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.skin) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.skinEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.inhaled">
+            <h3>{{'inhaled_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.inhaled) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.inhaledEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.physician">
+            <h3>{{'physician_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.physician) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.physicianEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.centerCall">
+            <h3>{{'centerCall_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.centerCall) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.centerCallEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.phone">
+            <h3>{{'emergencyPhone_lable'|translate}}:</h3>
+                <p>{{productInfo.phone}}</p>
+        </ion-item>
+        
+    </ion-list>
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#/productInfoProducer/{{productName}}">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#/productInfoHealth/{{productName}}">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

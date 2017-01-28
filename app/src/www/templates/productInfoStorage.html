@@ -1,0 +1,39 @@
+<!-- Storage info page -->
+<!--Header section of the page -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'storage_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<ion-content>
+    <ion-list>
+    <ion-item class="item-text-wrap" ng-show="productInfo.storageDisposal">
+            <h3>{{'storage_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.storageDisposal) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.storageDisposalEsp) | sanitize"></p>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#/productInfoChemicalHazards/{{productName}}">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#/productInfoSafelyInfo/{{productName}}">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

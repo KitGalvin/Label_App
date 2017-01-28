@@ -1,0 +1,70 @@
+<!-- Health info page -->
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+        <a class="button icon ion-home" href="#/firstPage"></a>
+        <!-- Display the title of the app in the header -->
+        <h4 class="title marquee">{{'healthInfo_lable' | translate}} : {{productInfo.product}}</h4>
+          
+          <!--Language toggle button -->
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<!-- content section -->
+<ion-content>
+    <ion-list>
+        <ion-item class="item-text-wrap signal-word" ng-show="productInfo.signal">
+            <h3>{{'precaution_lable'|translate}}:</h3>
+            <p ng-show="getLan()=='en'">{{productInfo.signal}}</p>
+            <p ng-show="getLan()=='es'">{{productInfo.signalEsp}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap sub-section" ng-show="productInfo.signal">
+            <p>{{'hazodousTo_lable' | translate}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.hazardStmt">
+            <h3>{{'hazardStmt_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.hazardStmt) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.hazardStmtEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.safetyRecs">
+            <h3>{{'safetyRecs_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.safetyRecs) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.safetyRecsEsp) | sanitize"></p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.rei">
+            <h3>{{'rei_lable'|translate}}:</h3><p>{{productInfo.rei}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.phi">
+            <h3>{{'phi_lable'|translate}}:</h3><p>{{productInfo.phi}}</p>
+        </ion-item>
+        
+        <ion-item class="item-text-wrap" ng-show="productInfo.physHaz">
+            <h3>{{'phyHaz_lable'|translate}}:</h3>
+                <p ng-show="getLan()=='en'" ng-bind-html="textWithLineBreaks(productInfo.physHaz) | sanitize"></p>
+                <p ng-show="getLan()=='es'" ng-bind-html="textWithLineBreaks(productInfo.physHazEsp) | sanitize"></p>
+        </ion-item>
+    </ion-list>
+    
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+    <div class="button-bar">
+        <a class="button icon icon-left ion-ios-arrow-left" title="Previous" href="#/productInfoFirstAid/{{productName}}">{{'previous_lable'|translate}}</a>
+        <a class="button" title="Home" href="#/productInfoMain/{{productName}}">{{'home_lable'|translate}}</a>
+        <a class="button" title="Search" href="#/searchBy">{{'newSearch_lable'|translate}}</a>
+        <a class="button icon icon-right ion-ios-arrow-right" title="Next" href="#/productInfoProtectiveClothing/{{productName}}">{{'next_lable'|translate}}</a>
+    </div>
+    
+</ion-footer-bar>
+
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>

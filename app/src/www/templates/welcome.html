@@ -1,0 +1,32 @@
+<!--Header section of the app -->
+<ion-header-bar class="bar-balanced">
+        <!-- Display the title of the app in the header -->
+        <h1 class="title marquee">{{'appName' | translate}}</h1>
+          <div class="lan-toggle-button" >
+              <span ng-click="setLan('en')" ng-show="getLan()=='es'" >EN</span>
+              <span ng-click="setLan('es')" ng-show="getLan()=='en'" >ES</span>
+          </div>
+      </ion-header-bar>
+
+<!-- Content section of the page -->
+<ion-content class="padding">
+    <div class="disclaimer-section">
+        <h4>{{'disclaimer_lable' | translate}}</h4>
+        <!-- <ion-scroll zooming="false" direction="y" style="width: 100%; height: 200px"> -->
+            
+            <p>{{'disclaimer' | translate}}</p>
+        <!-- </ion-scroll> -->
+        
+    </div>
+    
+</ion-content>
+
+
+<ion-footer-bar class="bar-balanced">
+        <a class="button button-clear pull-right icon-right ion-chevron-right" href="#/searchBy">{{'continue_lable' | translate}}</a>
+    
+</ion-footer-bar>
+<div class="footer-instructions">
+        <p>{{'footerInfo' | translate}}</p>
+</div>
+
