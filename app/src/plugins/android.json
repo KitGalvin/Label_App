@@ -1,0 +1,52 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "me.rahul.plugins.sqlDB": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "org.apache.cordova.network-information": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.pesticideproject842457"
+        }
+    }
+}
